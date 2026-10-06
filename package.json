@@ -1,0 +1,29 @@
+{
+  "name": "war-arena",
+  "private": true,
+  "version": "0.1.0",
+  "description": "2D War Arena: server-authoritative real-time 2D war game",
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @war/server --filter @war/web dev",
+    "dev:server": "pnpm --filter @war/server dev",
+    "dev:web": "pnpm --filter @war/web dev",
+    "build": "pnpm --filter @war/web build",
+    "start": "pnpm --filter @war/server start",
+    "test": "vitest run",
+    "typecheck": "pnpm -r typecheck",
+    "bots": "pnpm --filter @war/server bots",
+    "sim": "pnpm --filter @war/server sim"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "playwright-core": "^1.63.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

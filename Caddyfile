@@ -1,0 +1,5 @@
+{$DOMAIN} {
+	encode zstd gzip
+	# REST, the web client and the game WebSocket all go to the one app process
+	reverse_proxy app:8080
+}

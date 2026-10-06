@@ -1,0 +1,25 @@
+# UNTESTED: single-VPS layout from the design (Section 10): the game app behind Caddy for automatic TLS.
+# Set DOMAIN and SECRET before starting:  DOMAIN=play.example.com SECRET=$(openssl rand -hex 32) docker compose up -d
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      SECRET: ${SECRET:?set SECRET}
+      PUBLIC_URL: https://${DOMAIN:?set DOMAIN}
+      ALLOWED_ORIGINS: https://${DOMAIN}
+    volumes:
+      - data:/data
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [app]
+volumes:
+  data:
+  caddy_data:
