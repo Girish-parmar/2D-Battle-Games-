@@ -11,7 +11,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@fastify/static": "^8.0.0",
+    "@fastify/static": "^10.1.2",
     "@war/shared": "workspace:*",
     "fastify": "^5.0.0",
     "ws": "^8.18.0",
